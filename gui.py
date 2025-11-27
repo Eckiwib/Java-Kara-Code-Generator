@@ -13,7 +13,7 @@ def test():
 button = tk.Button(root, text="Generate", command=test)
 button.pack()
 
-gridtest = tk.Button(root, text="Test")
-gridtest.pack
+gridtest = tk.Button(root)
+gridtest.place(width=30, height=30)
 
 root.mainloop()
