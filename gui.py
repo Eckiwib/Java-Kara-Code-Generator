@@ -10,10 +10,10 @@ cols = 10
 def test():
     print("kara.move()")
 
-label = tk.Label(root, text="Java Kara Skript Generator")
-label.pack()
-
 button = tk.Button(root, text="Generate", command=test)
 button.pack()
+
+gridtest = tk.Button(root, text="Test")
+gridtest.pack
 
 root.mainloop()
