@@ -15,9 +15,11 @@ rows = 10
 cols = 10
 scattering = 30
 size = 30
+states = [[False for _ in range(rows)] for _ in range(cols)]
 
-def toggle_bg():
-    grid_button.config(bg="red")
+def toggle_bg(btn):
+    btn.config(bg="red")
+
 def Generate():
     pass
 
@@ -30,7 +32,8 @@ y_align = (w_size_y-size*cols)/2
 
 for r in range(rows):
     for c in range(cols):
-        grid_button = tk.Button(root, command=toggle_bg)
+        grid_button = tk.Button(root)
+        grid_button.config(command=lambda b=grid_button: toggle_bg(b))
         grid_button.place(x=r*scattering+x_align, y=c*scattering+y_align, width=size, height=size)
 
 root.mainloop()
