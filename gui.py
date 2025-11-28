@@ -1,5 +1,4 @@
 import tkinter as tk
-import time
 import logic
 
 #windows config
@@ -13,22 +12,25 @@ root.title("Java Kara Skript Generator")
 max = 3
 
 #grid Settings
-rows = 11
-cols = 11
+rows = 16
+cols = 16
 scattering = 30
 size = 30
 states = [[0 for _ in range(rows)] for _ in range(cols)]
 colors = ["white","gray","green"]
+ladybug = (8,2)
+
+preferl = True
 
 def toggle_bg(btn, row, col):
     states[row][col] = (states[row][col]+1)%max
     btn.config(bg=colors[states[row][col]%max])
     print(f"Button: ({row}|{col}) is currently at state: {states[row][col]}")
 
-def Generate():
-    pass
+def generate():
+    logic.generate(states, ladybug)
 
-button = tk.Button(root, text="Generate")
+button = tk.Button(root, text="Generate", command=generate)
 button.pack()
 
 #center alignment for the grid
