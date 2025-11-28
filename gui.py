@@ -16,10 +16,12 @@ cols = 10
 scattering = 30
 size = 30
 
-def test():
-    print("kara.move()")
+def toggle_bg():
+    grid_button.config(bg="red")
+def Generate():
+    pass
 
-button = tk.Button(root, text="Generate", command=test)
+button = tk.Button(root, text="Generate")
 button.pack()
 
 #center alignment for the grid
@@ -28,7 +30,7 @@ y_align = (w_size_y-size*cols)/2
 
 for r in range(rows):
     for c in range(cols):
-        gridtest = tk.Button(root)
-        gridtest.place(x=r*scattering+x_align, y=c*scattering+y_align, width=size, height=size)
+        grid_button = tk.Button(root, command=toggle_bg)
+        grid_button.place(x=r*scattering+x_align, y=c*scattering+y_align, width=size, height=size)
 
 root.mainloop()
