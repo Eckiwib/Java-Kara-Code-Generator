@@ -28,8 +28,16 @@ def toggle_bg(btn, row, col):
 def generate():
     logic.generate(states, kara)
 
-def setkara():
-    kara = ()
+def setkara(btn, row, col):
+    global kara_l
+    try:
+        kara_l.config(bg="white")
+    except:
+        pass
+    kara_l = btn
+    kara_l.config(bg="red")
+    kara = (row,col)
+    print(kara)
 
 button = tk.Button(root, text="Generate", command=generate)
 button.pack()
@@ -41,7 +49,7 @@ y_align = (w_size_y-size*cols)/2
 for r in range(rows):
     for c in range(cols):
         grid_button = tk.Button(root, bg="white")
-        grid_button.bind("<Button-3>", lambda event, x=r, y=c:setkara())
+        grid_button.bind("<Button-3>", lambda event, b=grid_button, x=r, y=c:setkara(b,x,y))
         grid_button.config(command=lambda b=grid_button, x=r, y=c: toggle_bg(b, x, y))
         grid_button.place(x=r*scattering+x_align, y=c*scattering+y_align, width=size, height=size)
 
