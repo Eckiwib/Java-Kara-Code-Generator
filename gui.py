@@ -18,7 +18,7 @@ scattering = 30
 size = 30
 states = [[0 for _ in range(rows)] for _ in range(cols)]
 colors = ["white","gray","green"]
-ladybug = (7,1)
+kara = (7,1)
 
 def toggle_bg(btn, row, col):
     states[row][col] = (states[row][col]+1)%max
@@ -26,7 +26,10 @@ def toggle_bg(btn, row, col):
     print(f"Button: ({row}|{col}) is currently at state: {states[row][col]}")
 
 def generate():
-    logic.generate(states, ladybug)
+    logic.generate(states, kara)
+
+def setkara():
+    kara = ()
 
 button = tk.Button(root, text="Generate", command=generate)
 button.pack()
@@ -38,6 +41,7 @@ y_align = (w_size_y-size*cols)/2
 for r in range(rows):
     for c in range(cols):
         grid_button = tk.Button(root, bg="white")
+        grid_button.bind("<Button-3>", lambda event, x=r, y=c:setkara())
         grid_button.config(command=lambda b=grid_button, x=r, y=c: toggle_bg(b, x, y))
         grid_button.place(x=r*scattering+x_align, y=c*scattering+y_align, width=size, height=size)
 
