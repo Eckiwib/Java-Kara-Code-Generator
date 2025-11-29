@@ -21,10 +21,6 @@ colors = ["white","gray","green"]
 ladybug = (7,1)
 
 def toggle_bg(btn, row, col):
-
-    print(f"row: {row} column: {col}")
-    print(states[0][0])
-
     states[row][col] = (states[row][col]+1)%max
     btn.config(bg=colors[states[row][col]])
     print(f"Button: ({row}|{col}) is currently at state: {states[row][col]}")
