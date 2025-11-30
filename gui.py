@@ -19,8 +19,7 @@ size = 30
 states = [[0 for _ in range(rows)] for _ in range(cols)]
 colors = ["white","gray","green"]
 
-kara = [7,14,"up"]
-facings = ("up","right","down","left")
+kara = [7,14,0]
 
 def toggle_bg(btn, row, col):
     states[row][col] = (states[row][col]+1)%max
@@ -28,7 +27,7 @@ def toggle_bg(btn, row, col):
     print(f"Button: ({row}|{col}) is currently at state: {states[row][col]}")
 
 def generate():
-    logic.generate(states, kara)
+    print(logic.generate(states, kara))
 
 def setkara(btn, row, col):
     global kara_l, kara
@@ -48,15 +47,13 @@ def rotkara(key):
     kara[2] = key
     print(key)
 
-root.bind("<Up>", lambda event:rotkara("up"))
-root.bind("<Right>", lambda event:rotkara("right"))
-root.bind("<Down>", lambda event:rotkara("down"))
-root.bind("<Left>", lambda event:rotkara("left"))
+root.bind("<Up>", lambda event:rotkara(0))
+root.bind("<Right>", lambda event:rotkara(1))
+root.bind("<Down>", lambda event:rotkara(2))
+root.bind("<Left>", lambda event:rotkara(3))
 
 gen_button = tk.Button(root, text="Generate", command=generate)
 gen_button.pack()
-rot_button = tk.Button(root, text="Rotate")
-rot_button.pack()
 
 #center alignment for the grid
 x_align = (w_size_x-size*rows)/2
