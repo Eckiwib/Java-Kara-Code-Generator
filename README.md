@@ -6,5 +6,5 @@ This is a small python tool in development to simplify the creation of walking p
 - Select boxes
 - Toggle through 4 different states, depending on if Kara should just walk over it or pu/removet a leaf too
 - Select tool to directly set boxes to a certain state
-- define custom function names for the default functions: `kara.move()`, `kara.turnright()`, `kara.turnleft()`, `kara.putLeaf()`,`kara.removeLeaf()`
+- define custom function names for the default functions: `kara.move()`, `kara.turnLight()`, `kara.turnLeft()`, `kara.putLeaf()`,`kara.removeLeaf()`
 - Copy Java code to clipboard
