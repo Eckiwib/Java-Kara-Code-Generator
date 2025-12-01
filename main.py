@@ -1,1 +1,2 @@
-import gui, logic
+import gui
+import logic
