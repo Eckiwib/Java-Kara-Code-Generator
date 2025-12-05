@@ -3,20 +3,28 @@ import logic
 import pyperclip
 import json
 
+with open("settings.json","r") as file:
+    settings = json.load(file)
+    
 #windows config
-w_size_x = 600
-w_size_y = 700
+WIDTH = settings["window"]["width"]
+HEIGHT = settings["window"]["height"]
+
+#grid Settings
+GS = settings["grid"]
+ROWS = GS["rows"]
+COLS = GS["height"]
+SCATTERING = GS["scattering"]
+SIZE = GS["size"]
+STATES = [[0 for _ in range(ROWS)] for _ in range(COLS)]
+COLORS = GS["colors"]
 
 max = 3
 
-#grid Settings
-rows = 15
-cols = 15
-scattering = 30
-size = 30
-states = [[0 for _ in range(rows)] for _ in range(cols)]
-colors = ["white","gray","green"]
+#current_facing = i
 
-kara = [7,14,0]
+kara = settings["kara"]
 
-pyperclip("\n".join(logic.generate(gui.states, gui.kara)))
+
+
+pyperclip.copy("\n".join(logic.generate(gui.states, gui.kara)))

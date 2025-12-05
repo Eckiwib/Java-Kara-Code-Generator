@@ -1,0 +1,19 @@
+{
+    "window":{
+        "width":600,
+        "height":700
+    },
+    "grid":{
+        "rows":15,
+        "columns":15,
+        "size":30,
+        "scattering":30,
+        "colors":["white", "gray", "green"]
+    },
+    "kara":[7,14,0],
+    "Java_commands":{
+        "move":"Kara.move();",
+        "Turn left":"Kara.turnLeft();",
+        "Turn right":"Kara.turnRight();"
+    }
+}

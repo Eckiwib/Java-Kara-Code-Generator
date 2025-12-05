@@ -1,45 +1,45 @@
-Java_commands = {"move":"Kara.move();","Turn left":"Kara.turnLeft();","Turn right":"Kara.turnRight();"}
-
 ops_x = [0, 1, 0, -1]
 ops_y = [-1, 0, 1, 0]
 
-def generate(states, ladybug):
+class generate():
 
-    cmd_output = []
+    def __init__(self, states, ladybug, java_commands, cmd_output) -> None:
+        s = self
+        s.states = states
+        s.ladybug = ladybug
+        s.java_commands = java_commands
+        s.cmd_output = cmd_output
 
-    while True:
+    def check(self, i) -> int:
+        check_x = self.ladybug[0]+ops_x[i]
+        check_y = self.ladybug[1]+ops_y[i]
 
-        for i in range(4):
+        self.check_x = check_x
+        self.check_y = check_y
 
-            check_x = ladybug[0]+ops_x[i]
-            check_y = ladybug[1]+ops_y[i]
-            check = states[check_x][check_y]
-            
-            if check > 0:
+        return self.states[check_x][check_y]
 
-                req_facing = i
-                cur_facing = int(ladybug[2])
-                
-                dif_r = (req_facing-cur_facing)%4
-                dif_l = (cur_facing-req_facing)%4
+    def fac_cmd(self) -> list:
 
-                if dif_r < dif_l:
-                    cmd_output.append(Java_commands["Turn right"])
-                elif dif_r > dif_l:
-                    cmd_output.append(Java_commands["Turn left"])
-                elif dif_l == 2:
-                    cmd_output.append(Java_commands["Turn left"])
-                    cmd_output.append(Java_commands["Turn left"])
+        cur_facing = int(self.ladybug[2])
+        
+        dif_r = (self.req_facing-cur_facing)%4
+        dif_l = (cur_facing-self.req_facing)%4
 
-                cmd_output.append(Java_commands["move"])
-                
-                states[ladybug[0]][ladybug[1]] = 0
-                print(states)
-                ladybug = [check_x, check_y, req_facing]
-                print(ladybug)
+        if dif_r < dif_l:
+            self.cmd_output.append(self.java_commands["Turn right"])
+        elif dif_r > dif_l:
+            self.cmd_output.append(self.java_commands["Turn left"])
+        elif dif_l == 2:
+            self.cmd_output.append(self.java_commands["Turn left"])
+            self.cmd_output.append(self.java_commands["Turn left"])
 
-                break
+        self.cmd_output.append(self.java_commands["move"])
 
+        return self.cmd_output
 
-    
-    return cmd_output
+    def final(self):
+        self.states[self.ladybug[0]][self.ladybug[1]] = 0
+        ladybug = [self.check_x, self.check_y, self.req_facing]
+
+        return ladybug, self.states
