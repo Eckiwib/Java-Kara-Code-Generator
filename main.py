@@ -13,18 +13,25 @@ HEIGHT = settings["window"]["height"]
 #grid Settings
 GS = settings["grid"]
 ROWS = GS["rows"]
-COLS = GS["height"]
+COLS = GS["columns"]
 SCATTERING = GS["scattering"]
 SIZE = GS["size"]
 STATES = [[0 for _ in range(ROWS)] for _ in range(COLS)]
 COLORS = GS["colors"]
+kara = settings["kara"]
 
 max = 3
 
-#current_facing = i
+def generate(states, kara):
+    generator = logic.generate(states, kara)
+    for fac in range(4):
+        check = generator.check(fac)
+        if check > 0:
+            cmds = generator.fac_cmd()
+            generator.final()
+            break
+        
+    pyperclip.copy("\n".join(cmds))
 
-kara = settings["kara"]
-
-
-
-pyperclip.copy("\n".join(logic.generate(gui.states, gui.kara)))
+window = gui.window(w_size_x=WIDTH, w_size_y=HEIGHT, size=SIZE,rows=ROWS, cols=COLS, scattering=SCATTERING, states=STATES, colors=COLORS, kara=kara, generate=generate)
+window.run()
