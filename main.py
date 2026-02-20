@@ -30,7 +30,7 @@ def generate(states, kara):
     while fac < 3:
         for fac in range(4):
             check = generator.check(fac)
-            print(check)
+            print(f"{fac}: {check}")
             if check > 0:
                 cmds.append(generator.fac_cmd())
                 generator.final()
