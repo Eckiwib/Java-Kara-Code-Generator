@@ -3,6 +3,7 @@ import json
 with open("settings.json","r") as file:
     settings = json.load(file)
 
+# These are the relative coordinates for every square that has to be checked in order to determine the next walk direction
 ops_x = [0, 1, 0, -1]
 ops_y = [-1, 0, 1, 0]
 

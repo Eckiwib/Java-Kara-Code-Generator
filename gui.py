@@ -27,7 +27,7 @@ class window:
     def toggle_bg(self, btn, row, col):
         self.states[row][col] = (self.states[row][col]+1)%max
         btn.config(bg=self.colors[self.states[row][col]])
-        print(f"Button: ({row}|{col}) is currently at state: {self.states[row][col]}")
+        #print(f"Button: ({row}|{col}) is currently at state: {self.states[row][col]}")
 
     def setkara(self, btn, row, col):
         try:
@@ -39,11 +39,11 @@ class window:
         self.kara[0] = row
         self.kara[1] = col
 
-        print(self.kara)
+        #print(self.kara)
 
     def rotkara(self, key):
         self.kara[2] = key
-        print(key)
+        #print(key)
 
     def arrow_binding(self):
         self.root.bind("<Up>", lambda event:self.rotkara(0))
