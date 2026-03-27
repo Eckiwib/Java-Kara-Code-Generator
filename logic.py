@@ -11,8 +11,6 @@ class generate:
     def __init__(self, states, kara) -> None:
         self.states = states
         self.kara = kara
-        self.java_commands = settings["Java_commands"]
-        self.cmd_output = []
 
     def check(self, fac) -> int:
         self.fac = fac
@@ -31,18 +29,18 @@ class generate:
         dif_r = (self.req_facing-cur_facing)%4
         dif_l = (cur_facing-self.req_facing)%4
 
+        # Assign placeholder value if kara doesn't need to turn
+        out = "_"
+
         if dif_r < dif_l:
-            self.cmd_output.append(self.java_commands["Turn right"])
+            out = "r"
         elif dif_r > dif_l:
-            self.cmd_output.append(self.java_commands["Turn left"])
+            out = "l"
         elif dif_l == 2:
-            self.cmd_output.append(self.java_commands["Turn left"])
-            self.cmd_output.append(self.java_commands["Turn left"])
+            out = "ll"
 
-        self.cmd_output.append(self.java_commands["move"])
+        return out
 
-        return self.cmd_output
-
-    def final(self) -> list:
+    def updatekara(self) -> list:
         self.states[self.kara[0]][self.kara[1]] = 0
         self.kara = [self.check_x, self.check_y, self.req_facing]

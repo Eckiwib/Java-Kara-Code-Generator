@@ -23,6 +23,8 @@ kara = settings["kara"]
 # List definition for saving grid states
 STATES = [[0 for _ in range(ROWS)] for _ in range(COLS)]
 
+java_commands = settings["Java_commands"]
+
 # Function to run the generation of the code
 def generate(states, kara):
     # Class initialisation
@@ -37,12 +39,22 @@ def generate(states, kara):
         for fac in range(4):
             check = generator.check(fac)
             if check > 0:
-                cmds.append(generator.fac_cmd())
-                generator.final()
+                fac_cmd = generator.fac_cmd()
+                if fac_cmd == "r":
+                    cmds.append(java_commands["Turn right"])
+                elif fac_cmd == "l":
+                    cmds.append(java_commands["Turn left"])
+                elif fac_cmd == "ll":
+                    cmds.append(java_commands["Turn left"])
+                    cmds.append(java_commands["Turn left"])
+
+                cmds.append(java_commands["Move"])
+
+                generator.updatekara()
                 break
     
     print(cmds)
-    #pyperclip.copy("\n".join(cmds))
+    pyperclip.copy("\n".join(cmds))
 
 window = gui.window(w_size_x=WIDTH, w_size_y=HEIGHT, size=SIZE,rows=ROWS, cols=COLS, scattering=SCATTERING, states=STATES, colors=COLORS, kara=kara, generate=generate)
 window.run()

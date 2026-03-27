@@ -12,8 +12,8 @@
     },
     "kara":[7,14,0],
     "Java_commands":{
-        "move":"Kara.move();",
-        "Turn left":"Kara.turnLeft();",
-        "Turn right":"Kara.turnRight();"
+        "Move":"kara.move();",
+        "Turn left":"kara.turnLeft();",
+        "Turn right":"kara.turnRight();"
     }
 }
