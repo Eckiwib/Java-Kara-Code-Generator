@@ -1,6 +1,7 @@
 import tkinter as tk
 
-max = 3
+# Number of different States
+max = 2
 
 class window:
     def __init__(self, w_size_x, w_size_y, states, colors, size, rows, cols, scattering, kara, generate) -> None:

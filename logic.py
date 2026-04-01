@@ -1,4 +1,7 @@
 import json
+import copy
+
+copy = copy.deepcopy
 
 with open("settings.json","r") as file:
     settings = json.load(file)
@@ -9,7 +12,7 @@ ops_y = [-1, 0, 1, 0]
 
 class generate:
     def __init__(self, states, kara) -> None:
-        self.states = states
+        self.states = copy(states)
         self.kara = kara
 
     def check(self, fac) -> int:
@@ -41,6 +44,6 @@ class generate:
 
         return out
 
-    def updatekara(self) -> list:
+    def update(self) -> list:
         self.states[self.kara[0]][self.kara[1]] = 0
         self.kara = [self.check_x, self.check_y, self.req_facing]

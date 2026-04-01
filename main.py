@@ -50,11 +50,11 @@ def generate(states, kara):
 
                 cmds.append(java_commands["Move"])
 
-                generator.updatekara()
+                generator.update()
                 break
     
     print(cmds)
-    pyperclip.copy("\n".join(cmds))
+    #pyperclip.copy("\n".join(cmds))
 
 window = gui.window(w_size_x=WIDTH, w_size_y=HEIGHT, size=SIZE,rows=ROWS, cols=COLS, scattering=SCATTERING, states=STATES, colors=COLORS, kara=kara, generate=generate)
 window.run()
