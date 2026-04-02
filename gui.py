@@ -23,6 +23,7 @@ class window:
 
         self.arrow_binding()
         self.g_button()
+        self.leaf_checkbox()
         self.grid()
 
     def toggle_bg(self, btn, row, col):
@@ -53,8 +54,13 @@ class window:
         self.root.bind("<Left>", lambda event:self.rotkara(3))
 
     def g_button(self):
-        gen_button = tk.Button(self.root, text="Generate", command=lambda:self.generate(self.states, self.kara))
+        gen_button = tk.Button(self.root, text="Generate", command=lambda:self.generate(self.states, self.kara, self.pleaf.get()))
         gen_button.pack()
+
+    def leaf_checkbox(self):
+        self.pleaf = tk.BooleanVar()
+        checkbox = tk.Checkbutton(self.root, text="Put leafs", variable=self.pleaf)
+        checkbox.pack()
 
     def grid(self):
         #center alignment for the grid

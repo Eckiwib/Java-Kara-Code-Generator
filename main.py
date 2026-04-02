@@ -26,7 +26,7 @@ STATES = [[0 for _ in range(ROWS)] for _ in range(COLS)]
 java_commands = settings["Java_commands"]
 
 # Function to run the generation of the code
-def generate(states, kara):
+def generate(states, kara, pleaf):
     # Class initialisation
     generator = logic.generate(states, kara)
     # fac for facing to check
@@ -49,6 +49,8 @@ def generate(states, kara):
                     cmds.append(java_commands["Turn left"])
 
                 cmds.append(java_commands["Move"])
+                if pleaf:
+                    cmds.append(java_commands["Put leaf"])
 
                 generator.update()
                 break
@@ -56,5 +58,16 @@ def generate(states, kara):
     print(cmds)
     #pyperclip.copy("\n".join(cmds))
 
-window = gui.window(w_size_x=WIDTH, w_size_y=HEIGHT, size=SIZE,rows=ROWS, cols=COLS, scattering=SCATTERING, states=STATES, colors=COLORS, kara=kara, generate=generate)
+window = gui.window(
+    w_size_x=WIDTH, 
+    w_size_y=HEIGHT, 
+    size=SIZE,rows=ROWS, 
+    cols=COLS, 
+    scattering=SCATTERING, 
+    states=STATES, 
+    colors=COLORS, 
+    kara=kara, 
+    generate=generate
+)
+
 window.run()

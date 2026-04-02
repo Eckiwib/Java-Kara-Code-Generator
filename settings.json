@@ -10,10 +10,12 @@
         "scattering":30,
         "colors":["white", "gray", "green"]
     },
-    "kara":[7,14,0],
+    "kara":[7,14,1],
     "Java_commands":{
         "Move":"kara.move();",
         "Turn left":"kara.turnLeft();",
-        "Turn right":"kara.turnRight();"
+        "Turn right":"kara.turnRight();",
+        "Put leaf":"kara.putLeaf();",
+        "Remove leaf":"kara.removeLeaf();"
     }
 }
