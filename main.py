@@ -2,6 +2,10 @@ import gui
 import logic
 import pyperclip
 import json
+import logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG, format="%(lileno)d")
 
 # load settings
 with open("settings.json","r") as file:
@@ -54,9 +58,9 @@ def generate(states, kara, pleaf):
 
                 generator.update()
                 break
-    
+
     print(cmds)
-    #pyperclip.copy("\n".join(cmds))
+    pyperclip.copy("\n".join(cmds))
 
 window = gui.window(
     w_size_x=WIDTH, 
@@ -65,7 +69,7 @@ window = gui.window(
     cols=COLS, 
     scattering=SCATTERING, 
     states=STATES, 
-    colors=COLORS, 
+    colors=COLORS,
     kara=kara, 
     generate=generate
 )
