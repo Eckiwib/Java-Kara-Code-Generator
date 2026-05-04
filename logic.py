@@ -1,5 +1,11 @@
 import json
 import copy
+import logging
+import logging_config
+from logging_config import log_blank
+
+logger = logging.getLogger(__name__)
+logging_config.logging_setup()
 
 copy = copy.deepcopy
 
@@ -23,6 +29,9 @@ class generate:
         self.check_x = check_x
         self.check_y = check_y
 
+        log_blank(logger)
+        logging.debug("XY-Checks")
+        logging.debug("x = %d y = %d\n", check_x, check_y)
         return self.states[check_x][check_y]
 
     def fac_cmd(self) -> list:

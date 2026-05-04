@@ -3,9 +3,11 @@ import logic
 import pyperclip
 import json
 import logging
+import logging_config
+from logging_config import log_blank
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG, format="%(lileno)d")
+logging_config.logging_setup()
 
 # load settings
 with open("settings.json","r") as file:
@@ -25,12 +27,15 @@ COLORS = GS["colors"]
 kara = settings["kara"]
 
 # List definition for saving grid states
-STATES = [[0 for _ in range(ROWS)] for _ in range(COLS)]
+states = [[0 for _ in range(ROWS)] for _ in range(COLS)]
 
 java_commands = settings["Java_commands"]
 
 # Function to run the generation of the code
 def generate(states, kara, pleaf):
+    logging.info("ENTERED GENERATE")
+    # Counter, how many steps kara already went
+    step = 0
     # Class initialisation
     generator = logic.generate(states, kara)
     # fac for facing to check
@@ -42,6 +47,9 @@ def generate(states, kara, pleaf):
         # check all surrounding squares
         for fac in range(4):
             check = generator.check(fac)
+
+            logging.debug("facing %s has state %d",fac, check)
+
             if check > 0:
                 fac_cmd = generator.fac_cmd()
                 if fac_cmd == "r":
@@ -53,6 +61,9 @@ def generate(states, kara, pleaf):
                     cmds.append(java_commands["Turn left"])
 
                 cmds.append(java_commands["Move"])
+                step += 1
+                logging.debug("--- STEP %d ---",step)
+
                 if pleaf:
                     cmds.append(java_commands["Put leaf"])
 
@@ -68,7 +79,7 @@ window = gui.window(
     size=SIZE,rows=ROWS, 
     cols=COLS, 
     scattering=SCATTERING, 
-    states=STATES, 
+    states=states, 
     colors=COLORS,
     kara=kara, 
     generate=generate
